@@ -1,28 +1,26 @@
-let Electrodomesticos = require('./Electrodomesticos');
+import Electrodomesticos from "./Electrodomestico.js";
 
-module.exports = class Nevera extends Electrodomesticos{
-    constructor(opcProcedencia, consumo, valorCapacidad){
-        super(opcProcedencia, consumo);
-        this.valorCapacidad = valorCapacidad;
-        //this.porceCapacidad = porceCapacidad;
+export class Televisor extends Electrodomesticos{
+    constructor(procedencia, consumo, tamaño, sintotizador){
+        super(procedencia, consumo);
+        this.tamaño = tamaño;
+        this.sintotizador = sintotizador;
+        this.PrecioTv = this.calcularPrecioTotal();
     }
 
-    calcularporcCapacidad(){
-        if (this.valorCapacidad>120) {
-            this.porceCapacidad =(((this.valorCapacidad - 120) * 5) / 1000);
-        } else{
-            this.porceCapacidad = 0;
-        }
+    adicionarPulgadas(){
+         let resul = (this.tamaño > 40)?this.precio*0.3:0;
+        return resul;
     }
 
-    calcularCapacidad(){
-        this.calcularporcCapacidad();
-        this.valorCapacidad=this.precio*this.porceCapacidad;
-        return this.valorCapacidad;
+    adicionarSintetizador(){
+        let resul2 = (this.sintotizador)?250000:0;
+        return resul2;
     }
 
-    calcularPrecioBase(){
-        super.calcularPrecioBase();
-        return this.precio+this.calcularCapacidad();
+
+    calcularPrecioTotal(){
+              return this.precio+this.adicionarSintetizador()+ this.adicionarPulgadas();
     }
 }
+

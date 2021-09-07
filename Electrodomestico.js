@@ -1,16 +1,14 @@
+export default class Electrodomestico {
 
-import Electrodomestico from "./Electrodomestico.js";
-
-export class Electrodomestico {
-    constructor(opcProcedencia, consumo){
+    constructor(procedencia, consumo){
         this.consumo= consumo;
-        this.opcProcedencia = opcProcedencia;
+        this.procedencia = procedencia;
         this.precio = this.obtenerValorConsumo()+this.obtenerValorProcedencia();
       
     }
 
     obtenerValorProcedencia(){
-        var resultado =  this.opcProcedencia == 'Nacional' ? 250_000 : 350_000;
+        var resultado =  this.procedencia == 'Nacional' ? 250_000 : 350_000;
         return resultado;
     }
 
@@ -25,8 +23,10 @@ export class Electrodomestico {
         }
     }
 
-    calcularPrecioBase(){
+    get calcularPrecio(){
         return this.precio;
     }
 
 }
+
+
